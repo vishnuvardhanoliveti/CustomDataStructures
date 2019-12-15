@@ -1,10 +1,5 @@
 package CustomDataStructures.Queue;
 
-import java.io.*;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class CustomQueue implements Queue {
     private int maxCapacity ;
     private int size = 0;
@@ -16,19 +11,24 @@ public class CustomQueue implements Queue {
     }
 
     @Override
-    public void enqueue(int data) throws QueueOverflowException {
+    public void enqueue(int... data) throws QueueOverflowException {
         if (size == maxCapacity) {
             throw new QueueOverflowException("Queue is full. You cannot perform an enqueue operation");
         }
-        size++;
-        Node previousLastNode = lastNode;
-        lastNode = new Node(data);
-        lastNode.setNext(null);
-        if (isEmpty()) {
-            firstNode = lastNode;
-        } else {
-            previousLastNode.setNext(lastNode);
+
+        for (int i : data) {
+            size++;
+            Node previousLastNode = lastNode;
+            lastNode = new Node(i);
+            lastNode.setNext(null);
+            if (isEmpty()) {
+                firstNode = lastNode;
+            } else {
+                previousLastNode.setNext(lastNode);
+            }
         }
+
+
     }
 
     @Override
@@ -67,33 +67,6 @@ public class CustomQueue implements Queue {
         return firstNode == null;
     }
 
-    @Override
-    public void entryInLog(Exception e) {
-        File file = new File("customQueueLog.txt");
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
-
-            Date date = new Date();
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd  HH.mm.ss");
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            String timing = sdf.format(timestamp);
-
-            if (!file.exists()) {
-                file.createNewFile();
-
-            }
-
-            bw.write("Timestamp:  " + timing);
-            bw.write("\n");
-            e.printStackTrace(new PrintWriter(bw));
-            bw.write("\n");
-
-
-        } catch (IOException io) {
-            System.out.println(io.getMessage());
-            io.printStackTrace();
-        }
-    }
 }
 
 

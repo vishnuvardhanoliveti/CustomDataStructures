@@ -1,15 +1,15 @@
 package CustomDataStructures.Queue;
 
+import CustomDataStructures.EntryInLogFile;
+
 public class App {
     public static void main(String[] args) {
         Queue q = new CustomQueue(5);
+        EntryInLogFile log = new EntryInLogFile();
+        final String fileName = "customQueueLog.txt";
         try {
 
-            q.enqueue(1);
-            q.enqueue(2);
-            q.enqueue(3);
-            q.enqueue(4);
-            q.enqueue(5);
+            q.enqueue(1, 2, 3, 4, 5);//using varargs method to pass multiple arguments
 
             q.printQueue(q.peek());
 
@@ -19,19 +19,19 @@ public class App {
 
             q.dequeue();
             q.printQueue(q.peek());
-            q.dequeue();
-            q.dequeue();
-            q.dequeue();
+            System.out.println("Performing dequeue operation: " + q.dequeue());
+            System.out.println("Performing dequeue operation: " + q.dequeue());
+            System.out.println("Performing dequeue operation: " + q.dequeue());
             q.printQueue(q.peek());
-            System.out.println(q.dequeue());
-            q.printQueue(q.peek());//check after dequeuing all
+            System.out.println("Performing dequeue operation: " + q.dequeue());
+            q.printQueue(q.peek());
             //q.dequeue(); // uncomment to check for additional dequeue when queue will be empty
         } catch (QueueOverflowException o) {
             System.out.println(o.getMessage());
-            q.entryInLog(o);
+            log.entryInLogFile(o, fileName);
         } catch (QueueUnderflowException u) {
             System.out.println(u.getMessage());
-            q.entryInLog(u);
+            log.entryInLogFile(u, fileName);
 
         }
     }
