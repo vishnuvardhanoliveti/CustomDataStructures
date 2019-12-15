@@ -81,7 +81,6 @@ public class CustomQueue implements Queue {
 
 }
 
-
 class QueueOverflowException extends Exception {
 
     QueueOverflowException(String message) {

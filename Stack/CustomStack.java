@@ -16,6 +16,7 @@ public class CustomStack implements Stack {
         if (size == maxCapacity) {
             throw new StackOverFlowException("Stack is full. You cannot perform a push operation");
         }
+
         for (int i : data) {
             size++;
             if (top == null) {
@@ -70,7 +71,6 @@ public class CustomStack implements Stack {
         return size;
     }
 }
-
 
 class StackOverFlowException extends Exception {
     StackOverFlowException(String message){
