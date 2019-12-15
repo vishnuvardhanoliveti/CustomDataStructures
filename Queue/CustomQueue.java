@@ -70,8 +70,7 @@ public class CustomQueue implements Queue {
     @Override
     public void entryInLog(Exception e) {
         File file = new File("customQueueLog.txt");
-        BufferedWriter bw = null;
-        try {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
 
             Date date = new Date();
 
@@ -83,9 +82,7 @@ public class CustomQueue implements Queue {
                 file.createNewFile();
 
             }
-            FileWriter fw = new FileWriter(file, true);
 
-            bw = new BufferedWriter(fw);
             bw.write("Timestamp:  " + timing);
             bw.write("\n");
             e.printStackTrace(new PrintWriter(bw));
@@ -95,12 +92,6 @@ public class CustomQueue implements Queue {
         } catch (IOException io) {
             System.out.println(io.getMessage());
             io.printStackTrace();
-        } finally {
-            try {
-                bw.close();
-            } catch (Exception nio) {
-                System.out.println(nio.getMessage());
-            }
         }
     }
 }
