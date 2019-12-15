@@ -7,8 +7,6 @@ public interface Queue {
 
     public void printQueue(Node firstNode);
 
-    public Node getFirstNode();
-
     public Node peek();
 
     public void entryInLog(Exception e);

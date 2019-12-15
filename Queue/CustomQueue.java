@@ -6,15 +6,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CustomQueue implements Queue {
-    int maxCapacity = 5;
-    int size = 0;
-    Node firstNode = null;
-    Node lastNode = null;
+    private int maxCapacity ;
+    private int size = 0;
+    private Node firstNode = null;
+    private Node lastNode = null;
+
+    CustomQueue(int capacity){
+        this.maxCapacity = capacity;
+    }
 
     @Override
     public void enqueue(int data) throws QueueOverflowException {
         if (size == maxCapacity) {
-            throw new QueueOverflowException("Queue is full");
+            throw new QueueOverflowException("Queue is full. You cannot perform an enqueue operation");
         }
         size++;
         Node previousLastNode = lastNode;
@@ -37,15 +41,11 @@ public class CustomQueue implements Queue {
         System.out.println();
     }
 
-    @Override
-    public Node getFirstNode() {
-        return firstNode;
-    }
 
     @Override
     public int dequeue() throws QueueUnderflowException {
         if (size == 0) {
-            throw new QueueUnderflowException("queue is empty");
+            throw new QueueUnderflowException("queue is empty. You cannot perform a dequeue operation");
         }
         size--;
         int dequeuedNum = firstNode.getData();
