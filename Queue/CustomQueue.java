@@ -63,16 +63,30 @@ public class CustomQueue implements Queue {
         return firstNode;
     }
 
+    @Override
     public boolean isEmpty() {
         return firstNode == null;
     }
+
+    @Override
+    public boolean isFull(){
+        return size == maxCapacity;
+    }
+
+    @Override
+    public int size(){
+        return size;
+    }
+
 
 }
 
 
 class QueueOverflowException extends Exception {
+
     QueueOverflowException(String message) {
         super(message);
+        System.out.println("inside constructor");
     }
 }
 

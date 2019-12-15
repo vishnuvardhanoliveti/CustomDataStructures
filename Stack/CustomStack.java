@@ -3,27 +3,33 @@ package CustomDataStructures.Stack;
 
 public class CustomStack implements Stack {
 
-    int size = 0;
-    int maxCapacity = 5;
-    Node top = null;
+    private int size = 0;
+    private int maxCapacity;
+    private Node top = null;
+
+    CustomStack(int capacity) {
+        this.maxCapacity = capacity;
+    }
 
     @Override
-    public void push(int data) throws StackOverFlowException {
+    public void push(int... data) throws StackOverFlowException {
         if (size == maxCapacity) {
-            throw new StackOverFlowException();
+            throw new StackOverFlowException("Stack is full. You cannot perform a push operation");
         }
-        size++;
-        if (top == null) {
-            top = new Node(data);
-        } else {
-            Node newNode = new Node(data);
-            newNode.setNext(top);
-            top = newNode;
+        for (int i : data) {
+            size++;
+            if (top == null) {
+                top = new Node(i);
+            } else {
+                Node newNode = new Node(i);
+                newNode.setNext(top);
+                top = newNode;
+            }
         }
     }
 
     @Override
-    public Node getTop() throws StackUnderFlowException {
+    public Node peek() {
         return top;
     }
 
@@ -40,7 +46,7 @@ public class CustomStack implements Stack {
     @Override
     public Node pop() throws StackUnderFlowException {
         if (size == 0) {
-            throw new StackUnderFlowException();
+            throw new StackUnderFlowException("Stack is empty.You cannot perform a pop operation");
         }
         size--;
         Node poppedNode = top;
@@ -48,13 +54,32 @@ public class CustomStack implements Stack {
 
         return poppedNode;
     }
+
+    @Override
+    public boolean isEmpty() {
+        return top == null;
+    }
+
+    @Override
+    public boolean isFull() {
+        return size == maxCapacity;
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
 }
 
 
 class StackOverFlowException extends Exception {
-
+    StackOverFlowException(String message){
+        super(message);
+    }
 }
 
 class StackUnderFlowException extends Exception {
-
+    StackUnderFlowException(String message){
+        super(message);
+    }
 }

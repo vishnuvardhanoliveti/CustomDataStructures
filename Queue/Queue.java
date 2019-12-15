@@ -9,4 +9,10 @@ public interface Queue {
 
     public Node peek();
 
+    public boolean isEmpty();
+
+    public boolean isFull();
+
+    public int size();
+
 }
