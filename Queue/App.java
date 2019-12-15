@@ -2,8 +2,9 @@ package CustomDataStructures.Queue;
 
 public class App {
     public static void main(String[] args) {
+        Queue q = new CustomQueue();
         try {
-            Queue q = new CustomQueue();
+
             q.enqueue(1);
             q.enqueue(2);
             q.enqueue(3);
@@ -24,11 +25,14 @@ public class App {
             q.printQueue(q.getFirstNode());
             System.out.println(q.dequeue());
             q.printQueue(q.getFirstNode());//check after dequeuing all
-            // q.dequeue();
+            //q.dequeue();
         } catch (QueueOverflowException o) {
-            System.out.println("Queue is full");
+            System.out.println(o.getMessage());
+            q.entryInLog(o);
         } catch (QueueUnderflowException u) {
-            System.out.println("Queue is Empty");
+            System.out.println(u.getMessage());
+             q.entryInLog(u);
+
         }
     }
 }

@@ -11,4 +11,6 @@ public interface Queue {
 
     public Node peek();
 
+    public void entryInLog(Exception e);
+
 }
