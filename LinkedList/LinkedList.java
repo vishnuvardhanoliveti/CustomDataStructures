@@ -5,25 +5,33 @@ import java.util.Set;
 
 public class LinkedList implements List {
 
-    Node head = null;
-    int size = 0;
+    private Node head = null;
+    private int size = 0;
 
     @Override
-    public void insert(int data) {
-        if (head == null) {
-            head = new Node(data);
-        } else {
-            Node curr = head;
-            while (curr.getNext() != null) {
-                curr = curr.getNext();
+    public void add(int ...data) {
+
+        for(int i:data) {
+            size++;
+            if (head == null) {
+                head = new Node(i);
+            } else {
+                Node curr = head;
+                while (curr.getNext() != null) {
+                    curr = curr.getNext();
+                }
+                curr.setNext(new Node(i));
             }
-            curr.setNext(new Node(data));
         }
     }
 
     @Override
     public void remove(int data) {
-
+       if(head==null){
+           System.out.println("Linked list is empty");
+           return;
+       }
+       size--;
         //base case if data is in head
         if (head != null && head.getData() == data) {
             head = head.getNext();
@@ -51,10 +59,27 @@ public class LinkedList implements List {
     public void traverse() {
         Node curr = head;
         while (curr != null) {
-            System.out.print(curr.getData() + "->");
+            System.out.print(curr + "->");
             curr = curr.getNext();
         }
     }
+
+    @Override
+    public void traverse(Node n) {
+        Node curr = n;
+        while (curr != null) {
+            System.out.print(curr + "->");
+            curr = curr.getNext();
+        }
+    }
+
+    @Override
+    public int size(){
+        return size;
+    }
+
+
+
 
     @Override
     public Node getHead() {
@@ -166,13 +191,7 @@ public class LinkedList implements List {
 
     }
 
-    public void traverse(Node n) {
-        Node curr = n;
-        while (curr != null) {
-            System.out.print(curr.getData() + "->");
-            curr = curr.getNext();
-        }
-    }
+
 
     @Override
     public boolean isPalindrome(Node n) {

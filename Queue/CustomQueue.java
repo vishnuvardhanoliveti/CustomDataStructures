@@ -85,7 +85,6 @@ class QueueOverflowException extends Exception {
 
     QueueOverflowException(String message) {
         super(message);
-        System.out.println("inside constructor");
     }
 }
 

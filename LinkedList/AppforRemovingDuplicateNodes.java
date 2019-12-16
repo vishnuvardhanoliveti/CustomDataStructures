@@ -4,13 +4,7 @@ public class AppforRemovingDuplicateNodes {
 
     public static void main(String[] args) {
         List ll = new LinkedList();
-
-        ll.insert(1);
-        ll.insert(1);
-        ll.insert(1);
-        ll.insert(3);
-        ll.insert(4);
-        ll.insert(5);
+        ll.add(1,1,1,3,4,5);
 
         ll.removeDuplicatesUsingTwoPointers(ll.getHead());
 

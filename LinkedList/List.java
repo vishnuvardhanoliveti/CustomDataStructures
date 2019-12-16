@@ -2,13 +2,15 @@ package CustomDataStructures.LinkedList;
 
 public interface List {
 
-    public void insert(int data);
+    public void add(int ...data);
 
     public void remove(int data);
 
     public void traverse();
 
     public void traverse(Node head);
+
+    public int size();
 
     public void removeDuplicatesUsingSet(Node head);
 
