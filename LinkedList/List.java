@@ -4,17 +4,17 @@ public interface List {
 
     public void add(int ...data);
 
-    public void remove(int data);
+    public boolean remove(int data);
 
-    public void traverse();
+    public void printList();
 
-    public void traverse(Node head);
+
 
     public int size();
 
-    public void removeDuplicatesUsingSet(Node head);
+    public void removeDuplicatesUsingSet();
 
-    public void removeDuplicatesUsingTwoPointers(Node head);
+    public void removeDuplicatesUsingTwoPointers();
 
     public Node getHead();
 
@@ -29,4 +29,16 @@ public interface List {
     public Node reverseALinkedList(Node head);
 
     public Node findIntersectionOfTwoLinkedLists(Node head1, Node head2);
+
+    /*If a method is not required to be used in all classes which implement this List interface
+      then a static method can be created in this interface which has body
+     */
+    public static void printList(Node head){
+        Node curr = head;
+        while (curr != null) {
+            System.out.print(curr + "->");
+            curr = curr.getNext();
+        }
+        System.out.println();
+    }
 }
