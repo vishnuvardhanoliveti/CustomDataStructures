@@ -10,6 +10,6 @@ public class AppForFindingLinkedlistsIntersection {
         list2.getHead().next.next = list1.getHead().next.next.next;
         Node res = list1.findIntersectionOfTwoLinkedLists(list1.getHead(), list2.getHead());
 
-        System.out.println(res);
+        System.out.println("Intersecting node is "+res);
     }
 }

@@ -26,58 +26,53 @@ public class LinkedList implements List {
     }
 
     @Override
-    public void remove(int data) {
+    public boolean remove(int data) {
        if(head==null){
-           System.out.println("Linked list is empty");
-           return;
+           return false;
        }
-       size--;
+
         //base case if data is in head
         if (head != null && head.getData() == data) {
             head = head.getNext();
-
+            size--;
+            return true;
         } else {
-            removeNode(head, head.getNext(), data);
+           return removeNode(head, head.getNext(), data);
         }
 
 
     }
 
-    public void removeNode(Node prev, Node curr, int data) {
+    private boolean removeNode(Node prev, Node curr, int data) {
         while (curr != null) {
             if (curr.getData() == data) {
                 prev.setNext(curr.getNext());
                 curr = null;
+                size--;
+                return true;
             }
             prev = curr;
             curr = curr.getNext();
 
         }
+        return false;
     }
 
     @Override
-    public void traverse() {
+    public void printList() {
         Node curr = head;
         while (curr != null) {
             System.out.print(curr + "->");
             curr = curr.getNext();
         }
+        System.out.println();
     }
 
-    @Override
-    public void traverse(Node n) {
-        Node curr = n;
-        while (curr != null) {
-            System.out.print(curr + "->");
-            curr = curr.getNext();
-        }
-    }
 
     @Override
     public int size(){
         return size;
     }
-
 
 
 
@@ -87,9 +82,9 @@ public class LinkedList implements List {
     }
 
     @Override
-    public void removeDuplicatesUsingSet(Node n) {
+    public void removeDuplicatesUsingSet() {
         Set<Integer> set = new HashSet<>();
-        Node curr = n;
+        Node curr = head;
         Node prev = null;
         while (curr != null) {
             if (set.contains(curr.getData())) {
@@ -104,8 +99,8 @@ public class LinkedList implements List {
     }
 
     @Override
-    public void removeDuplicatesUsingTwoPointers(Node n) {
-        Node curr = n;
+    public void removeDuplicatesUsingTwoPointers() {
+        Node curr = head;
         while (curr != null) {
             Node pointer = curr;
             while (pointer.next != null) {
