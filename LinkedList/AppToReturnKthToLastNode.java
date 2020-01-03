@@ -1,6 +1,6 @@
 package CustomDataStructures.LinkedList;
 
-public class AppToRetunKthToLastNode {
+public class AppToReturnKthToLastNode {
 
     public static void main(String[] args) {
         List ll = new LinkedList();

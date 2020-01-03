@@ -10,19 +10,31 @@ public class LinkedList implements List {
 
     @Override
     public void add(int ...data) {
+        Node curr = null;
 
-        for(int i:data) {
-            size++;
-            if (head == null) {
-                head = new Node(i);
-            } else {
-                Node curr = head;
-                while (curr.getNext() != null) {
-                    curr = curr.getNext();
-                }
-                curr.setNext(new Node(i));
+        //finding the tail of the linked list
+        if (head != null) {
+            curr = head;
+            while (curr.getNext() != null) {
+                curr = curr.getNext();
             }
         }
+
+        Node tail = curr;
+
+        //adding the passed arguments into the linked list
+        for (int i : data) {
+            size++;
+            if (tail == null) {
+                head = new Node(i);
+                tail = head;
+                continue;
+            }
+            tail.setNext(new Node(i));
+            tail = tail.getNext();
+        }
+        //System.out.println("tail is " + tail);
+
     }
 
     @Override

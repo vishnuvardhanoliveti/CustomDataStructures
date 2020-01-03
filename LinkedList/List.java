@@ -8,8 +8,6 @@ public interface List {
 
     public void printList();
 
-
-
     public int size();
 
     public void removeDuplicatesUsingSet();
@@ -29,6 +27,7 @@ public interface List {
     public Node reverseALinkedList(Node head);
 
     public Node findIntersectionOfTwoLinkedLists(Node head1, Node head2);
+
 
     /*If a method is not required to be used in all classes which implement this List interface
       then a static method can be created in this interface which has body
